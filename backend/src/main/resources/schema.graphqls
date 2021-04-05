@@ -1,0 +1,30 @@
+type Query {
+    accounts: [Account!]!
+    login(email: String!, password: String!): Account!
+    cards(account_id: ID!): [Card!]!
+    card(id: ID!): Card
+}
+
+type Mutation {
+    createCard(account_id: ID!, title: String!, description: String!): Card!
+    deleteCard(id: ID!): Boolean
+    signup(email: String!, password: String!) : Account!
+}
+
+type Subscription {
+    latestCard: Card!
+}
+
+type Account {
+    id: ID!
+    email: String!
+    password: String!
+}
+
+type Card {
+    id: ID!
+    account_id: ID!
+    title: String!
+    description: String!
+    create_at: String
+}

@@ -1,0 +1,55 @@
+micronaut:
+  application:
+    name: demo
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowCredentials: true
+          allowedMethods:
+            - OPTIONS
+            - POST
+            - PUT
+            - GET
+          exposedHeaders:
+            - Access-Control-Allow-Origin
+            - Access-Control-Allow-Headers
+            - Access-Control-Request-Method
+            - Access-Control-Request-Headers
+            - Origin
+            - Cache-Control
+            - Content-Type
+            - Authorization
+      single-header: true
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5431/ninecho_test
+    username: bingqiliu
+    password: password
+
+graphql:
+  enabled: true
+  graphiql:
+    path: /graphiql
+    enabled: true
+  path: /graphql
+  graphql-ws:
+    enabled: true
+    keep-alive-enabled: true
+    keep-alive-interval: 15s
+    path: /graphql-ws
+
+endpoints:
+  health:
+    details-visible: anonymous
+  flyway:
+    enabled: true
+    sensitive: false
+
+flyway:
+  datasources:
+    default:
+      locations: classpath:db/migration
+
